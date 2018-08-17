@@ -19,7 +19,7 @@
                         showCancelButton: true,
                         cancelButtonText: 'Cancel',
                         width: '50%'
-                    });
+                    }, updatePet(e.target.dataset.id));
                     break;
                 case 'delete':
                     swal({

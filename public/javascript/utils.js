@@ -27,6 +27,7 @@ function createPetCard({ name, type, created, id }, isEditable = false) {
     let editBtn = document.createElement('button');
     editBtn.classList.add('btn', 'edit-btn');
     editBtn.setAttribute('data-type', 'edit');
+    editBtn.setAttribute('data-id', `${id}`);
     editBtn.innerText = 'Edit';
 
     let deleteBtn = document.createElement('button');
