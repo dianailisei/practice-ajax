@@ -23,14 +23,10 @@
                     break;
                 case 'delete':
                     swal({
-                        title: "Are you sure?",
-                        text: "Your will not be able to recover this pet!",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "Yes, delete it!"
+                        title: "Success",
+                        text: "Pet deleted",
+                        type: "success"
                     },
-                    
                     deletePet(e.target.dataset.id),
                     e.target.parentElement.remove()
                     );
