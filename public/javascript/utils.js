@@ -13,11 +13,13 @@ function createPetCard({ name, type, created, id }, isEditable = false) {
 
     let nameEl = document.createElement('h1');
     nameEl.contentEditable = isEditable;
+    nameEl.setAttribute('data-type', "name");
     nameEl.innerText = name;
 
     let ageEl = document.createElement('p');
     let days = document.createElement('span');
     days.contentEditable = isEditable;
+    days.setAttribute('data-type', "age");
     days.innerText = getAge(created);
 
     ageEl.classList.add('age');
@@ -39,6 +41,7 @@ function createPetCard({ name, type, created, id }, isEditable = false) {
     card.appendChild(img);
     card.appendChild(nameEl);
     card.appendChild(ageEl);
+    card.setAttribute("id", `${id}`);
     if (!isEditable) {
         card.appendChild(editBtn);
         card.appendChild(deleteBtn);
