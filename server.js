@@ -14,7 +14,10 @@ app.use(bodyParser.json());
 
 app.listen(PORT, () => {
     if (enableAuth) {
-        console.log('\x1b[32m', `Server with dummy auth are listening on ${PORT}`);
+        console.log(
+            '\x1b[32m',
+            `Server with dummy auth are listening on ${PORT}`
+        );
     } else if (enableCors) {
         console.log('\x1b[32m', `CORS blocking server running on ${PORT}`);
     } else {
@@ -47,7 +50,11 @@ app.get('/', (req, res) => {
 
 app.get('/pets', (req, res) => {
     if (req.query.pageNo) {
-        db.getPetsPaginated(Number(req.query.pageNo), Number(req.query.pageSize), req.query.name).then(resp => res.json(resp));
+        db.getPetsPaginated(
+            Number(req.query.pageNo),
+            Number(req.query.pageSize),
+            req.query.name
+        ).then(resp => res.json(resp));
         return;
     } else if (req.query.name) {
         db.getPetsByName(req.query.name).then(resp => res.json(resp));
@@ -57,7 +64,10 @@ app.get('/pets', (req, res) => {
 });
 
 app.get('/pets/:id', (req, res) => {
-    db.getPet(Number(req.params.id)).then(resp => res.json(resp), err => res.status(err).send());
+    db.getPet(Number(req.params.id)).then(
+        resp => res.json(resp),
+        err => res.status(err).send()
+    );
 });
 
 app.post('/pets', (req, res) => {
@@ -78,7 +88,7 @@ app.delete('/pets', (req, res) => {
     db.deletePets(req.body)
         .then(resp => res.status(200).send())
         .catch(err => res.status(err).send());
-})
+});
 
 app.post('/login', (req, res) => {
     token = Buffer.from(Date.now().toString()).toString('base64');
