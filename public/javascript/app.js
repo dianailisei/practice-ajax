@@ -129,25 +129,29 @@
     });
 
     let searchForm = document.getElementById('searchForm');
-    searchForm.addEventListener('submit', e => {
-        e.preventDefault();
-        let searchName = document.getElementById('nameInput').value;
-        PetsService.getPets(
-            resp => {
-                petsContainer.innerHTML = null;
-                resp.forEach(element => {
-                    petsContainer.appendChild(createPetCard(element));
-                });
-            },
-            err => {
-                swal({
-                    title: 'You are not logged in',
-                    text: 'Log in',
-                    type: 'warning'
-                });
-            },
-            searchName
-        );
-    });
+    let timeoutID;
 
+    searchForm.addEventListener('input', e => {
+        e.preventDefault();
+        clearTimeout(timeoutID);
+        timeoutID = setTimeout(function() {
+            let searchName = document.getElementById('nameInput').value;
+            PetsService.getPets(
+                resp => {
+                    petsContainer.innerHTML = null;
+                    resp.forEach(element => {
+                        petsContainer.appendChild(createPetCard(element));
+                    });
+                },
+                err => {
+                    swal({
+                        title: 'You are not logged in',
+                        text: 'Log in',
+                        type: 'warning'
+                    });
+                },
+                searchName
+            );
+        }, 500);
+    });
 })();
