@@ -11,7 +11,7 @@
                             {
                                 name: 'Bob',
                                 type: 'cat',
-                                created: Date.now()
+                                created: Date.now(),
                             },
                             true
                         ),
@@ -22,6 +22,17 @@
                     });
                     break;
                 case 'delete':
+                    swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this pet!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, delete it!"
+                    },
+                    
+                    deletePet(e.target.dataset.id)
+                    );
                     break;
                 default:
                     break;

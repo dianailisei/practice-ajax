@@ -1,8 +1,8 @@
 /**
  *
- * @param {{name: string, type: string, created: number}} param0
+ * @param {{name: string, type: string, created: number, id: number}} param0
  */
-function createPetCard({ name, type, created }, isEditable = false) {
+function createPetCard({ name, type, created, id }, isEditable = false) {
     let card = document.createElement('div');
     card.classList.add('pet', `pet--${type}`);
 
@@ -32,6 +32,7 @@ function createPetCard({ name, type, created }, isEditable = false) {
     let deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btn', 'delete-btn');
     deleteBtn.setAttribute('data-type', 'delete');
+    deleteBtn.setAttribute('data-id', `${id}`);
     deleteBtn.innerText = 'Delete';
 
     card.appendChild(img);
