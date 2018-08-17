@@ -31,7 +31,8 @@
                         confirmButtonText: "Yes, delete it!"
                     },
                     
-                    deletePet(e.target.dataset.id)
+                    deletePet(e.target.dataset.id),
+                    e.target.parentElement.remove()
                     );
                     break;
                 default:
@@ -40,18 +41,18 @@
         }
     });
 
-    petsContainer.appendChild(
-        createPetCard({
-            name: 'Dummy 1',
-            type: 'cat',
-            created: Date.now()
-        })
-    );
-    petsContainer.appendChild(
-        createPetCard({
-            name: 'Dummy 2',
-            type: 'dog',
-            created: Date.now()
-        })
-    );
+    // petsContainer.appendChild(
+    //     createPetCard({
+    //         name: 'Dummy 1',
+    //         type: 'cat',
+    //         created: Date.now()
+    //     })
+    // );
+    // petsContainer.appendChild(
+    //     createPetCard({
+    //         name: 'Dummy 2',
+    //         type: 'dog',
+    //         created: Date.now()
+    //     })
+    // );
 })();
