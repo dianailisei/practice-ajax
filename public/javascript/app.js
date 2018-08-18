@@ -67,12 +67,24 @@
                                                 newPet.created
                                             );
                                         },
-                                        err => {}
+                                        err => {
+                                            swal({
+                                                title: 'You are not logged in',
+                                                text: 'Log in',
+                                                type: 'warning'
+                                            });
+                                        }
                                     );
                                 }
                             });
                         },
-                        err => {}
+                        err => {
+                            swal({
+                                title: 'You are not logged in',
+                                text: 'Log in',
+                                type: 'warning'
+                            });
+                        }
                     );
 
                     break;
@@ -153,5 +165,47 @@
                 searchName
             );
         }, 500);
+    });
+
+    let loginBtn = document.getElementById('loginBtn');
+    loginBtn.addEventListener('click', e => {
+        e.preventDefault();
+        AuthService.login(
+           () => {
+                swal({
+                    title: 'Success',
+                    type: 'success',
+                    text: 'You are logged in!'
+                });
+            },
+            () => {
+                swal({
+                    title: 'Alert',
+                    type: 'warning',
+                    text: 'There was an error. Please try again!'
+                });
+            }
+        );
+    });
+
+    let logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', e => {
+        e.preventDefault();
+        AuthService.logout(
+            () => {
+                swal({
+                    title: 'Success',
+                    type: 'success',
+                    text: 'You are logged out!'
+                });
+            },
+            () => {
+                swal({
+                    title: 'Alert',
+                    type: 'warning',
+                    text: 'You are already logged out!'
+                });
+            }
+        );
     });
 })();
